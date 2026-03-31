@@ -1,0 +1,44 @@
+{
+  "skill": "market-breadth",
+  "version": "1.1.0",
+  "date": "2026-03-31",
+  "composite_score": 66.6,
+  "health": "healthy",
+  "blow_off_risk": false,
+  "blow_off_warning": "",
+  "implication": "Broad participation confirmed. Equal-weight keeping pace with cap-weight. Small caps participating. Most sectors positive. Druckenmiller breadth condition met -- gains not concentrated in mega-caps.",
+  "components": {
+    "ew_vs_cw": {
+      "score": 77.7,
+      "direction": "healthy",
+      "ew_3m_pct": -1.7,
+      "cw_3m_pct": -7.23,
+      "divergence": 5.53
+    },
+    "small_vs_large": {
+      "score": 59.8,
+      "direction": "healthy",
+      "small_3m_pct": -4.45,
+      "large_3m_pct": -6.89,
+      "divergence": 2.44
+    },
+    "sector_breadth": {
+      "score": 55.6,
+      "direction": "neutral",
+      "positive_sectors": 5,
+      "negative_sectors": 4,
+      "sector_returns": {
+        "Technology": -11.37,
+        "Financials": -11.79,
+        "Healthcare": -6.88,
+        "Energy": 42.94,
+        "Industrials": 0.91,
+        "Consumer Dis": -12.68,
+        "Staples": 6.49,
+        "Materials": 9.0,
+        "Utilities": 9.54
+      }
+    }
+  },
+  "source": "Yahoo Finance via yfinance (free)"
+}

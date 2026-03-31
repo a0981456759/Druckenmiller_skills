@@ -1,0 +1,15 @@
+{
+  "name": "druckenmiller-skill",
+  "owner": {
+    "name": "Howard",
+    "url": "https://github.com/GITHUB_USERNAME"
+  },
+  "plugins": [
+    {
+      "name": "druckenmiller",
+      "source": "./",
+      "description": "Daily Druckenmiller conviction analysis — liquidity, earnings, breadth, price signal → conviction score + position recommendation.",
+      "version": "1.0.0"
+    }
+  ]
+}

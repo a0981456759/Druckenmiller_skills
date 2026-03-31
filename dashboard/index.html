@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Druckenmiller Conviction Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --border: #2a2a2a;
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --green: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --green-dim: rgba(34,197,94,0.12);
+      --orange-dim: rgba(249,115,22,0.12);
+      --red-dim: rgba(239,68,68,0.12);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── Error state ── */
+    .error-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .date-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .score-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .score-big {
+      font-size: clamp(4rem, 18vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .score-max {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .zone-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .zone-low    { background: var(--red-dim);    color: var(--red);    border: 1px solid rgba(239,68,68,0.3); }
+    .zone-moderate { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
+    .zone-high   { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(34,197,94,0.3); }
+
+    .equity-range {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Cards ── */
+    .card {
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card-body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .card-action {
+      background: var(--green-dim);
+      border: 1px solid rgba(34,197,94,0.25);
+    }
+    .card-action .card-label { color: var(--green); }
+
+    .card-warning {
+      background: var(--orange-dim);
+      border: 1px solid rgba(249,115,22,0.25);
+    }
+    .card-warning .card-label { color: var(--orange); }
+
+    /* divergence list */
+    .divergence-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .divergence-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .divergence-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--orange);
+    }
+
+    /* ── Signals ── */
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .signals-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .signal-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 8px 12px;
+      align-items: center;
+    }
+
+    .signal-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .signal-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      grid-column: 1;
+      grid-row: 1;
+      text-align: right;
+      align-self: center;
+    }
+
+    .signal-header {
+      display: contents;
+    }
+
+    .signal-bar-wrap {
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .bar-red    { background: var(--red); }
+    .bar-orange { background: var(--orange); }
+    .bar-green  { background: var(--green); }
+
+    .signal-score {
+      font-size: 1rem;
+      font-weight: 700;
+      min-width: 36px;
+      text-align: right;
+      grid-column: 2;
+      grid-row: 1 / 3;
+      align-self: center;
+    }
+
+    .signal-direction {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
+    .signal-weight {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      grid-column: 2;
+      grid-row: 2;
+      text-align: right;
+    }
+
+    /* ── Narrative ── */
+    .narrative-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: #ccc;
+    }
+
+    /* ── Conviction scale ── */
+    .scale-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .scale-bar-track {
+      position: relative;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(
+        to right,
+        #ef4444 0%, #ef4444 35%,
+        #f97316 35%, #f97316 60%,
+        #22c55e 60%, #22c55e 100%
+      );
+      margin: 20px 0 10px;
+    }
+
+    .scale-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #0a0a0a;
+      box-shadow: 0 0 0 2px #fff;
+      transition: left 0.4s ease;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .scale-zones {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      margin-top: 6px;
+    }
+
+    .scale-zone-low    { color: var(--red); }
+    .scale-zone-moderate { color: var(--orange); }
+    .scale-zone-high   { color: var(--green); }
+
+    /* ── Quote ── */
+    .quote-wrap {
+      text-align: center;
+      padding: 24px 16px 0;
+    }
+
+    .quote-text {
+      font-size: clamp(0.95rem, 3vw, 1.15rem);
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .quote-author {
+      margin-top: 10px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #444;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.7rem;
+      color: #333;
+    }
+
+    /* ── Score color ── */
+    .score-low    { color: var(--red); }
+    .score-moderate { color: var(--orange); }
+    .score-high   { color: var(--green); }
+
+    /* ── RWD ── */
+    @media (max-width: 480px) {
+      body { padding: 16px 12px 40px; }
+      .signal-row { padding: 12px 14px; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <div class="error-state" id="loading">
+      <div>載入中...</div>
+    </div>
+  </div>
+
+  <script>
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function todayStr() {
+      const d = new Date();
+      return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+    }
+
+    function scoreColor(s) {
+      if (s < 50) return 'score-low';
+      if (s <= 65) return 'score-moderate';
+      return 'score-high';
+    }
+
+    function barClass(s) {
+      if (s < 50) return 'bar-red';
+      if (s <= 65) return 'bar-orange';
+      return 'bar-green';
+    }
+
+    function zoneClass(zone) {
+      const map = { low: 'zone-low', moderate: 'zone-moderate', high: 'zone-high' };
+      return map[zone] || 'zone-moderate';
+    }
+
+    function zoneLabel(zone) {
+      const map = { low: 'LOW CONVICTION', moderate: 'MODERATE', high: 'HIGH CONVICTION' };
+      return map[zone] || zone.toUpperCase();
+    }
+
+    function signalDisplayName(key) {
+      const map = {
+        'liquidity-regime': '流動性制度',
+        'forward-earnings': '前瞻盈利',
+        'market-breadth':   '市場廣度',
+        'price-signal':     '價格信號',
+      };
+      return map[key] || key;
+    }
+
+    function renderDivergences(list) {
+      if (!list || list.length === 0) return '';
+      const items = list.map(d => `
+        <li class="divergence-item">
+          <span class="divergence-icon">▲</span>
+          <span>${d}</span>
+        </li>
+      `).join('');
+      return `
+        <div class="card card-warning">
+          <div class="card-label">價格背離警告 (Druckenmiller Signal)</div>
+          <ul class="divergence-list">${items}</ul>
+        </div>
+      `;
+    }
+
+    function renderSignals(components) {
+      return Object.entries(components).map(([key, c]) => {
+        const pct = Math.min(100, Math.max(0, c.score)).toFixed(0);
+        const weight = Math.round(c.weight * 100);
+        return `
+          <div class="signal-row">
+            <span class="signal-name">${signalDisplayName(key)}</span>
+            <span class="signal-score ${scoreColor(c.score)}">${c.score.toFixed(1)}</span>
+            <div class="signal-bar-wrap">
+              <div class="bar-track">
+                <div class="bar-fill ${barClass(c.score)}" style="width:${pct}%"></div>
+              </div>
+              <span class="signal-direction">${c.direction}</span>
+            </div>
+            <span class="signal-weight">權重 ${weight}%</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function render(data) {
+      const app = document.getElementById('app');
+      const colorClass = scoreColor(data.conviction_score);
+      const markerLeft = Math.min(100, Math.max(0, data.conviction_score)).toFixed(1);
+
+      app.innerHTML = `
+        <!-- Header -->
+        <div class="header">
+          <div class="date-label">${data.date}</div>
+          <div class="score-wrap">
+            <span class="score-big ${colorClass}">${data.conviction_score.toFixed(1)}</span>
+            <span class="score-max">/ 100</span>
+          </div>
+          <span class="zone-badge ${zoneClass(data.conviction_zone)}">${zoneLabel(data.conviction_zone)}</span>
+          <div class="equity-range">建議倉位 ${data.equity_range}</div>
+        </div>
+
+        <!-- Action card -->
+        <div class="card card-action">
+          <div class="card-label">行動建議</div>
+          <div class="card-body">${data.action}</div>
+        </div>
+
+        <!-- Divergences -->
+        ${renderDivergences(data.notable_divergences)}
+
+        <!-- Signals -->
+        <div class="section-label">四大信號</div>
+        <div class="signals-list">
+          ${renderSignals(data.components)}
+        </div>
+
+        <!-- Narrative -->
+        <div class="section-label">市場敘述</div>
+        <div class="narrative-card">${data.narrative}</div>
+
+        <!-- Scale -->
+        <div class="scale-wrap">
+          <div class="section-label">確信度對照尺</div>
+          <div class="scale-bar-track">
+            <div class="scale-marker" style="left:${markerLeft}%"></div>
+          </div>
+          <div class="scale-labels">
+            <span>0</span><span>25</span><span>50</span><span>75</span><span>100</span>
+          </div>
+          <div class="scale-zones">
+            <span class="scale-zone-low">低確信 (0–49)</span>
+            <span class="scale-zone-moderate">中確信 (50–65)</span>
+            <span class="scale-zone-high">高確信 (66–100)</span>
+          </div>
+        </div>
+
+        <!-- Quote -->
+        <div class="quote-wrap">
+          <div class="quote-text">"${data.druck_quote}"</div>
+          <div class="quote-author">— Stanley Druckenmiller</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+          Generated by conviction-synthesizer v${data.version} &nbsp;·&nbsp; ${data.date}<br>
+          Based solely on principles Druckenmiller has stated publicly. Not investment advice.
+        </div>
+      `;
+    }
+
+    function showError(msg) {
+      document.getElementById('app').innerHTML = `
+        <div class="error-state">
+          <div>${msg}</div>
+        </div>
+      `;
+    }
+
+    async function init() {
+      const date = todayStr();
+      const url  = `../reports/conviction_${date}.json`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        render(data);
+      } catch (e) {
+        showError('今日數據尚未生成，請先跑 pipeline');
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

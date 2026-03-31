@@ -1,0 +1,18 @@
+{
+  "name": "druckenmiller",
+  "version": "1.0.0",
+  "description": "Daily Druckenmiller conviction analysis. Fetches today's conviction score, 4-signal breakdown, and position recommendation from a live data pipeline.",
+  "author": {
+    "name": "Howard",
+    "url": "https://github.com/GITHUB_USERNAME"
+  },
+  "repository": "https://github.com/GITHUB_USERNAME/druckenmiller-skill",
+  "license": "MIT",
+  "keywords": [
+    "druckenmiller",
+    "conviction",
+    "market-analysis",
+    "liquidity",
+    "investing"
+  ]
+}

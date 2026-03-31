@@ -1,0 +1,48 @@
+{
+  "skill": "price-signal",
+  "version": "1.0.0",
+  "date": "2026-03-31",
+  "overall_score": 56.4,
+  "overall_direction": "neutral",
+  "implication": "Mixed price signals. Some stocks acting well, others lagging. No clear divergence pattern. Treat as neutral input to synthesizer. Note: Druckenmiller acknowledged algo trading has reduced reliability of this signal in recent years.",
+  "notable_divergences": [
+    "NVDA: beat earnings by 5.3% but stock reacted -4.7% -- warning signal",
+    "MSFT: beat earnings by 34.1% but stock reacted -10.0% -- warning signal",
+    "AMD: beat earnings by 16.0% but stock reacted -15.4% -- warning signal",
+    "GE: beat earnings by 46.4% but stock reacted -5.5% -- warning signal"
+  ],
+  "sector_results": {
+    "Technology": {
+      "score": 34.0,
+      "direction": "bearish",
+      "bullish": 1,
+      "bearish": 3
+    },
+    "Financials": {
+      "score": 58.0,
+      "direction": "neutral",
+      "bullish": 3,
+      "bearish": 2
+    },
+    "Healthcare": {
+      "score": 34.0,
+      "direction": "bearish",
+      "bullish": 1,
+      "bearish": 3
+    },
+    "Energy": {
+      "score": 82.0,
+      "direction": "bullish",
+      "bullish": 4,
+      "bearish": 0
+    },
+    "Industrials": {
+      "score": 74.0,
+      "direction": "bullish",
+      "bullish": 4,
+      "bearish": 1
+    }
+  },
+  "caveat": "Druckenmiller noted in 2018 that algo trading has 'severely inhibited' his ability to read price signals. This skill is weighted at 15% in the synthesizer, lower than the other three, for this reason.",
+  "source": "Yahoo Finance via yfinance (free)"
+}

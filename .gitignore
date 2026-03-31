@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+logs/
+
+# local Claude Code settings
+.claude/
+
+# old reports dir (pipeline now outputs to public/reports/)
+reports/
+
+# per-skill intermediate reports (not needed in repo)
+*/scripts/reports/
+
+# keep public/reports/ tracked (pipeline output goes here)
+!public/reports/
+!public/reports/.gitkeep

@@ -1,0 +1,43 @@
+name: Daily Conviction Pipeline
+
+on:
+  schedule:
+    - cron: '0 1 * * 1-5'   # 每週一到五 UTC 01:00 (台北時間 09:00)
+  workflow_dispatch:          # 允許手動觸發
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          FMP_API_KEY:  ${{ secrets.FMP_API_KEY }}
+        run: |
+          python liquidity-regime/scripts/liquidity_regime.py   --output-dir public/reports/
+          python forward-earnings/scripts/forward_earnings.py   --output-dir public/reports/
+          python market-breadth/scripts/market_breadth.py       --output-dir public/reports/
+          python price-signal/scripts/price_signal.py           --output-dir public/reports/
+          python conviction-synthesizer/scripts/conviction_synthesizer.py \
+            --reports-dir public/reports/ --output-dir public/reports/
+
+      - name: Commit & push reports
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/reports/
+          git diff --cached --quiet || git commit -m "chore: daily conviction report $(date +%Y-%m-%d)"
+          git push
