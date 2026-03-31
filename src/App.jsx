@@ -68,7 +68,7 @@ function CopyBlock({ value }) {
 
 // ── SkillModal ─────────────────────────────────────────────────────────────────
 
-const GITHUB_REPO  = 'GITHUB_USERNAME/druckenmiller-skill'  // ← 上傳後改這裡
+const GITHUB_REPO  = 'a0981456759/Druckenmiller_skills'
 const PLUGIN_NAME  = 'druckenmiller'
 const MARKET_NAME  = 'druckenmiller-skill'
 
