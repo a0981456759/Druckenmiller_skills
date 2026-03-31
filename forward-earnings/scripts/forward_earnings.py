@@ -137,7 +137,7 @@ def analyze_sector(sector: str, tickers: list) -> dict:
     results = []
     for ticker in tickers:
         results.append(get_ticker_forward_signal(ticker))
-        time.sleep(0.3)
+        time.sleep(1.5)
 
     up_count   = sum(1 for r in results if r["direction"] == "up")
     down_count = sum(1 for r in results if r["direction"] == "down")

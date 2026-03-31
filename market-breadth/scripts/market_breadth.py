@@ -13,7 +13,7 @@ Druckenmiller (New Market Wizards, 1987 top call):
    well behind. This factor made the rally look like a blow-off."
 """
 
-import os, json, argparse
+import os, json, argparse, time
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import yfinance as yf
@@ -53,9 +53,11 @@ def fetch_returns(ticker: str, days: int = LOOKBACK_DAYS) -> float | None:
             return None
         close = df["Close"].dropna()
         ret = (close.iloc[-1] - close.iloc[0]) / close.iloc[0] * 100
+        time.sleep(1.5)
         return round(float(ret.iloc[0]) if hasattr(ret, 'iloc') else float(ret), 2)
     except Exception as e:
         print(f"  Warning: {ticker} -- {e}")
+        time.sleep(1.5)
         return None
 
 
@@ -67,9 +69,11 @@ def fetch_prices(ticker: str, days: int = LOOKBACK_DAYS) -> pd.Series:
         df = yf.download(ticker, start=start, end=end, progress=False, auto_adjust=True)
         if df.empty:
             return pd.Series(dtype=float)
+        time.sleep(1.5)
         return df["Close"].dropna()
     except Exception as e:
         print(f"  Warning: {ticker} -- {e}")
+        time.sleep(1.5)
         return pd.Series(dtype=float)
 
 

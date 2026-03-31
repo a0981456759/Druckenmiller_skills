@@ -197,7 +197,7 @@ def analyze_sector(sector: str, tickers: list) -> dict:
             "earnings_reaction": earn,
             "price_momentum":    mom,
         }
-        time.sleep(0.2)
+        time.sleep(1.5)
 
     # Sector aggregate
     signals    = [v["signal"] for v in ticker_results.values()]
