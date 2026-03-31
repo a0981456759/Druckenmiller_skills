@@ -32,5 +32,14 @@ echo Running conviction-synthesizer...
 if errorlevel 1 (echo [ERROR] conviction-synthesizer failed >> "%LOGFILE%")
 
 echo [%DATE% %TIME%] Pipeline complete >> "%LOGFILE%"
+
+echo Pushing reports to GitHub...
+git add public\reports\ >> "%LOGFILE%" 2>&1
+git diff --cached --quiet >nul 2>&1 || (
+    git commit -m "chore: daily conviction report %TODAY%" >> "%LOGFILE%" 2>&1
+    git push >> "%LOGFILE%" 2>&1
+    echo Pushed to GitHub.
+)
+
 echo Done. Log: %LOGFILE%
 endlocal

@@ -1,9 +1,7 @@
 name: Daily Conviction Pipeline
 
 on:
-  schedule:
-    - cron: '0 1 * * 1-5'   # 每週一到五 UTC 01:00 (台北時間 09:00)
-  workflow_dispatch:          # 允許手動觸發
+  workflow_dispatch:   # 只保留手動觸發（yfinance 在 GitHub Actions IP 被封鎖）
 
 jobs:
   run-pipeline:
