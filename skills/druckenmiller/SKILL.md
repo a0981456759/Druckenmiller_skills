@@ -11,7 +11,7 @@ version: 1.0.0
 Compute today's date (YYYY-MM-DD) and fetch:
 
 ```
-https://VERCEL_URL/reports/conviction_YYYY-MM-DD.json
+https://druckenmiller-skills.vercel.app/reports/conviction_YYYY-MM-DD.json
 ```
 
 Replace `VERCEL_URL` with the actual deployment domain.
