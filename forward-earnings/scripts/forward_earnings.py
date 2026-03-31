@@ -17,6 +17,10 @@ from datetime import datetime
 from dotenv import load_dotenv
 import yfinance as yf
 import pandas as pd
+import requests
+
+_SESSION = requests.Session()
+_SESSION.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"})
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", "..", ".env"))
 
@@ -64,7 +68,7 @@ def get_ticker_forward_signal(ticker: str) -> dict:
     empty = {"direction": "neutral", "composite": 0.0,
              "revision_score": 0.0, "trend_score": 0.0, "next_year_growth": 0.0}
     try:
-        t = yf.Ticker(ticker)
+        t = yf.Ticker(ticker, session=_SESSION)
 
         # 1. EPS Revisions — up/down counts in last 30 days
         revision_score = 0.0

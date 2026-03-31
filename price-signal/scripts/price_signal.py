@@ -20,6 +20,10 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import yfinance as yf
 import pandas as pd
+import requests
+
+_SESSION = requests.Session()
+_SESSION.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"})
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", "..", ".env"))
 
@@ -42,7 +46,7 @@ def fetch_price_data(ticker: str, days: int = LOOKBACK_DAYS + 10) -> pd.DataFram
         end   = datetime.today()
         start = end - timedelta(days=days)
         df = yf.download(ticker, start=start, end=end,
-                         progress=False, auto_adjust=True)
+                         progress=False, auto_adjust=True, session=_SESSION)
         return df
     except Exception as e:
         print(f"    Warning: {ticker} -- {e}")
@@ -56,7 +60,7 @@ def get_earnings_reaction(ticker: str) -> dict:
     Positive surprise but stock falls = bearish price signal (Druck's key tell).
     """
     try:
-        t    = yf.Ticker(ticker)
+        t    = yf.Ticker(ticker, session=_SESSION)
         hist = t.earnings_dates
 
         if hist is None or hist.empty:
@@ -75,7 +79,7 @@ def get_earnings_reaction(ticker: str) -> dict:
         earn_start = latest_date - timedelta(days=2)
         earn_end   = latest_date + timedelta(days=5)
         prices     = yf.download(ticker, start=earn_start, end=earn_end,
-                                  progress=False, auto_adjust=True)
+                                  progress=False, auto_adjust=True, session=_SESSION)
 
         if prices.empty or len(prices) < 3:
             return {"signal": "neutral", "reaction_pct": 0.0, "has_data": False}

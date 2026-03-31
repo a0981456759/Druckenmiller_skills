@@ -18,6 +18,10 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import yfinance as yf
 import pandas as pd
+import requests
+
+_SESSION = requests.Session()
+_SESSION.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"})
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", "..", ".env"))
 
@@ -48,7 +52,7 @@ def fetch_returns(ticker: str, days: int = LOOKBACK_DAYS) -> float | None:
     try:
         end   = datetime.today()
         start = end - timedelta(days=days + 10)  # buffer for weekends
-        df = yf.download(ticker, start=start, end=end, progress=False, auto_adjust=True)
+        df = yf.download(ticker, start=start, end=end, progress=False, auto_adjust=True, session=_SESSION)
         if df.empty or len(df) < 10:
             return None
         close = df["Close"].dropna()
@@ -66,7 +70,7 @@ def fetch_prices(ticker: str, days: int = LOOKBACK_DAYS) -> pd.Series:
     try:
         end   = datetime.today()
         start = end - timedelta(days=days + 10)
-        df = yf.download(ticker, start=start, end=end, progress=False, auto_adjust=True)
+        df = yf.download(ticker, start=start, end=end, progress=False, auto_adjust=True, session=_SESSION)
         if df.empty:
             return pd.Series(dtype=float)
         time.sleep(1.5)
