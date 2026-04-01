@@ -2,40 +2,35 @@
   "skill": "conviction-synthesizer",
   "version": "1.0.0",
   "date": "2026-04-01",
-  "conviction_score": 61.4,
+  "conviction_score": 52.2,
   "conviction_zone": "moderate",
   "equity_range": "50-69%",
   "action": "維持標準倉位。信號偏多但不夠清晰，等待更強的催化劑再加碼。",
-  "narrative": "流動性中性（57/100）——Fed 轉向跡象存在但尚未確認，等待更明確信號。 分析師正在上調盈利預期（65/100），這是 Druckenmiller 說的「conventional wisdom 尚未反映」的機會。 市場廣度健康（67/100）——漲跌勢分散，非大型股集中型市場。 股價信號出現 4 個背離（盈利好但股價跌），Druckenmiller：「幾乎必然是六個月後的壞消息預警。」",
+  "narrative": "流動性中性（56/100）——Fed 轉向跡象存在但尚未確認，等待更明確信號。",
   "druck_quote": "When you don't see it, don't swing.",
   "blow_off_risk": false,
-  "notable_divergences": [
-    "NVDA: beat earnings by 5.3% but stock reacted -4.7% -- warning signal",
-    "MSFT: beat earnings by 34.1% but stock reacted -10.0% -- warning signal",
-    "AMD: beat earnings by 16.0% but stock reacted -15.4% -- warning signal",
-    "GE: beat earnings by 46.4% but stock reacted -5.5% -- warning signal"
-  ],
+  "notable_divergences": [],
   "components": {
     "liquidity-regime": {
-      "score": 57.4,
+      "score": 56.2,
       "direction": "neutral",
       "weight": 0.35,
       "stale": false
     },
     "forward-earnings": {
-      "score": 64.9,
-      "direction": "beat",
+      "score": 50.0,
+      "direction": "neutral",
       "weight": 0.25,
       "stale": false
     },
     "market-breadth": {
-      "score": 66.6,
-      "direction": "healthy",
+      "score": 50.0,
+      "direction": "neutral",
       "weight": 0.25,
       "stale": false
     },
     "price-signal": {
-      "score": 56.4,
+      "score": 50.0,
       "direction": "neutral",
       "weight": 0.15,
       "stale": false

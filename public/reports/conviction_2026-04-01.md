@@ -1,7 +1,7 @@
 # Druckenmiller Conviction Briefing -- 2026-04-01
 
 ## 今日判斷
-**確信度**: 61.4 / 100  
+**確信度**: 52.2 / 100  
 **區間**: MODERATE  
 **建議倉位**: 50-69%
 
@@ -9,21 +9,15 @@
 維持標準倉位。信號偏多但不夠清晰，等待更強的催化劑再加碼。
 
 ## 市場敘述
-流動性中性（57/100）——Fed 轉向跡象存在但尚未確認，等待更明確信號。 分析師正在上調盈利預期（65/100），這是 Druckenmiller 說的「conventional wisdom 尚未反映」的機會。 市場廣度健康（67/100）——漲跌勢分散，非大型股集中型市場。 股價信號出現 4 個背離（盈利好但股價跌），Druckenmiller：「幾乎必然是六個月後的壞消息預警。」
-
-## 價格背離警告 (Druckenmiller Signal)
-- NVDA: beat earnings by 5.3% but stock reacted -4.7% -- warning signal
-- MSFT: beat earnings by 34.1% but stock reacted -10.0% -- warning signal
-- AMD: beat earnings by 16.0% but stock reacted -15.4% -- warning signal
-- GE: beat earnings by 46.4% but stock reacted -5.5% -- warning signal
+流動性中性（56/100）——Fed 轉向跡象存在但尚未確認，等待更明確信號。
 
 ## 四大信號明細
 | 信號 | 分數 | 方向 | 權重 |
 |------|------|------|------|
-| liquidity-regime | 57.4 | neutral | 35% |
-| forward-earnings | 64.9 | beat | 25% |
-| market-breadth | 66.6 | healthy | 25% |
-| price-signal | 56.4 | neutral | 15% |
+| liquidity-regime | 56.2 | neutral | 35% |
+| forward-earnings | 50.0 | neutral | 25% |
+| market-breadth | 50.0 | neutral | 25% |
+| price-signal | 50.0 | neutral | 15% |
 
 ## Druckenmiller 語錄
 > "When you don't see it, don't swing."
