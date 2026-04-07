@@ -2,7 +2,7 @@
 setlocal
 cd /d "%~dp0"
 
-set PYTHON=C:\Users\Howard\anaconda3\python.exe
+set PYTHON=C:\Users\Howard\anaconda3\envs\ML\python.exe
 set LOG_DIR=%~dp0logs
 if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
 
