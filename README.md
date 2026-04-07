@@ -128,6 +128,13 @@ Claude Code Skill
 
 ---
 
+## Other Languages
+
+- [繁體中文](README_ZH-TW.md)
+- [简体中文](README_ZH-CN.md)
+
+---
+
 ## License
 
 MIT — use freely, attribution appreciated.
