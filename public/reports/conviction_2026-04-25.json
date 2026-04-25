@@ -1,0 +1,45 @@
+{
+  "skill": "conviction-synthesizer",
+  "version": "1.0.0",
+  "date": "2026-04-25",
+  "conviction_score": 52.3,
+  "conviction_zone": "moderate",
+  "equity_range": "50-69%",
+  "action": "維持標準倉位。信號偏多但不夠清晰，等待更強的催化劑再加碼。",
+  "narrative": "流動性中性（57/100）——Fed 轉向跡象存在但尚未確認，等待更明確信號。",
+  "druck_quote": "When you don't see it, don't swing.",
+  "blow_off_risk": false,
+  "notable_divergences": [],
+  "components": {
+    "liquidity-regime": {
+      "score": 56.6,
+      "direction": "neutral",
+      "weight": 0.35,
+      "stale": false
+    },
+    "forward-earnings": {
+      "score": 50.0,
+      "direction": "neutral",
+      "weight": 0.25,
+      "stale": false
+    },
+    "market-breadth": {
+      "score": 50.0,
+      "direction": "neutral",
+      "weight": 0.25,
+      "stale": false
+    },
+    "price-signal": {
+      "score": 50.0,
+      "direction": "neutral",
+      "weight": 0.15,
+      "stale": false
+    }
+  },
+  "weights": {
+    "liquidity-regime": 0.35,
+    "forward-earnings": 0.25,
+    "market-breadth": 0.25,
+    "price-signal": 0.15
+  }
+}
