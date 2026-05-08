@@ -1,0 +1,167 @@
+{
+  "skill": "forward-earnings",
+  "version": "2.0.0",
+  "date": "2026-05-08",
+  "overall_score": 50.0,
+  "overall_direction": "neutral",
+  "implication": "Mixed revision picture. No broad directional edge from forward earnings. Weight liquidity regime and breadth signals more heavily.",
+  "sector_results": {
+    "Technology": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Financials": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Healthcare": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Energy": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Industrials": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Consumer Discret.": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Consumer Staples": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Materials": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    "Utilities": {
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    }
+  },
+  "sector_ranking": [
+    {
+      "sector": "Technology",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Financials",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Healthcare",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Energy",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Industrials",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Consumer Discret.",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Consumer Staples",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Materials",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    },
+    {
+      "sector": "Utilities",
+      "score": 50.0,
+      "direction": "neutral",
+      "up_revised": 0,
+      "down_revised": 0,
+      "avg_revision_score": 0.0,
+      "avg_next_yr_growth": 0.0
+    }
+  ],
+  "methodology": "Analyst EPS revisions (30d) + EPS trend vs 30d ago + next-year growth estimate",
+  "source": "Yahoo Finance via yfinance (free)"
+}
