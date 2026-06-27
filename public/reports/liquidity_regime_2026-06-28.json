@@ -1,0 +1,27 @@
+{
+  "skill": "liquidity-regime",
+  "version": "1.0.0",
+  "date": "2026-06-28",
+  "regime": "neutral",
+  "strength": 53.7,
+  "components": {
+    "balance_sheet_trend": {
+      "score": 50.0,
+      "direction": "neutral"
+    },
+    "rate_direction": {
+      "score": 50.0,
+      "direction": "neutral"
+    },
+    "m2_growth": {
+      "score": 65.22788497039477,
+      "direction": "expanding"
+    },
+    "yield_curve": {
+      "score": 54.65,
+      "direction": "expanding"
+    }
+  },
+  "implication": "Mixed signals. Preserve capital. Wait for clearer regime.",
+  "source": "FRED API"
+}
