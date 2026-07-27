@@ -16,7 +16,6 @@ without rebuilding the frontend.
 import functools
 import http.server
 import os
-import socketserver
 import subprocess
 import sys
 import threading
@@ -82,6 +81,11 @@ if __name__ == "__main__":
     handler = functools.partial(
         http.server.SimpleHTTPRequestHandler, directory=str(DIST_DIR)
     )
-    with socketserver.TCPServer(("", port), handler) as httpd:
+    # ThreadingHTTPServer, not the plain single-threaded HTTPServer/TCPServer:
+    # a browser loading this page fires off requests for the JS bundle and
+    # CSS almost simultaneously, and a single-threaded server can only
+    # accept one connection at a time — Railway's edge returned 503 for
+    # whichever request was still waiting in the backlog (confirmed live).
+    with http.server.ThreadingHTTPServer(("", port), handler) as httpd:
         print(f"Serving {DIST_DIR} on port {port}", flush=True)
         httpd.serve_forever()
